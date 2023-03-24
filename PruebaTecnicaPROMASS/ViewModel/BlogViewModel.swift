@@ -46,7 +46,7 @@ class BlogViewModel{
     }
     
     func tituloSearch(titulo: String, bblog: @escaping([Blog]?, Error?) -> Void){
-        //db.collection("dataBlog").order(by: "titulo").start(at: titulo).end(at: titulo+"\uf8ff").getDocuments { snapshot, error in
+        //db.collection("dataBlog").order(by: "titulo").start(at: "").end(at: titulo+"\uf8ff").getDocuments { snapshot, error in
         db.collection("dataBlog").whereField("titulo", isEqualTo: "\(titulo)").getDocuments { snapshot, error in
             
             if let error = error {
@@ -68,6 +68,10 @@ class BlogViewModel{
             }
             bblog(blogs, nil)
         }
+    }
+    
+    func detalleBlog(){
+        
     }
     
 }

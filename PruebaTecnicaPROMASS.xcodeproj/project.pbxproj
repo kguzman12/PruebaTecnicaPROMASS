@@ -19,7 +19,6 @@
 		E387CDB529CBD17700FAF892 /* DetalleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E387CDB429CBD17700FAF892 /* DetalleViewController.swift */; };
 		E387CDB729CBD19400FAF892 /* BlogViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E387CDB629CBD19400FAF892 /* BlogViewModel.swift */; };
 		E387CDB929CBD1C700FAF892 /* Blog.swift in Sources */ = {isa = PBXBuildFile; fileRef = E387CDB829CBD1C700FAF892 /* Blog.swift */; };
-		E387CDBB29CBD49E00FAF892 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E387CDBA29CBD49E00FAF892 /* GoogleService-Info.plist */; };
 		E387CDBE29CBD53F00FAF892 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = E387CDBD29CBD53F00FAF892 /* FirebaseAnalytics */; };
 		E387CDC029CBD53F00FAF892 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = E387CDBF29CBD53F00FAF892 /* FirebaseAnalyticsOnDeviceConversion */; };
 		E387CDC229CBD53F00FAF892 /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = E387CDC129CBD53F00FAF892 /* FirebaseAnalyticsSwift */; };
@@ -49,6 +48,7 @@
 		E387CDF229CBD53F00FAF892 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = E387CDF129CBD53F00FAF892 /* FirebaseStorageCombine-Community */; };
 		E387CDF529CC22A500FAF892 /* ListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E387CDF329CC22A500FAF892 /* ListTableViewCell.swift */; };
 		E387CDF629CC22A500FAF892 /* ListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E387CDF429CC22A500FAF892 /* ListTableViewCell.xib */; };
+		E3CCE90829CE190D00E5E4AB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E3CCE90729CE190D00E5E4AB /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,9 +68,9 @@
 		E387CDB429CBD17700FAF892 /* DetalleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetalleViewController.swift; sourceTree = "<group>"; };
 		E387CDB629CBD19400FAF892 /* BlogViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlogViewModel.swift; sourceTree = "<group>"; };
 		E387CDB829CBD1C700FAF892 /* Blog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Blog.swift; sourceTree = "<group>"; };
-		E387CDBA29CBD49E00FAF892 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E387CDF329CC22A500FAF892 /* ListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableViewCell.swift; sourceTree = "<group>"; };
 		E387CDF429CC22A500FAF892 /* ListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListTableViewCell.xib; sourceTree = "<group>"; };
+		E3CCE90729CE190D00E5E4AB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,7 +149,7 @@
 				E387CD9929CBCD5F00FAF892 /* SceneDelegate.swift */,
 				E387CDA329CBCD6000FAF892 /* Assets.xcassets */,
 				E387CDA829CBCD6000FAF892 /* Info.plist */,
-				E387CDBA29CBD49E00FAF892 /* GoogleService-Info.plist */,
+				E3CCE90729CE190D00E5E4AB /* GoogleService-Info.plist */,
 				E387CDA029CBCD5F00FAF892 /* PruebaTecnicaPROMASS.xcdatamodeld */,
 			);
 			path = PruebaTecnicaPROMASS;
@@ -294,8 +294,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				E387CDA729CBCD6000FAF892 /* LaunchScreen.storyboard in Resources */,
-				E387CDBB29CBD49E00FAF892 /* GoogleService-Info.plist in Resources */,
 				E387CDA429CBCD6000FAF892 /* Assets.xcassets in Resources */,
+				E3CCE90829CE190D00E5E4AB /* GoogleService-Info.plist in Resources */,
 				E387CD9F29CBCD5F00FAF892 /* Main.storyboard in Resources */,
 				E387CDF629CC22A500FAF892 /* ListTableViewCell.xib in Resources */,
 			);
