@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "956105DF-49C2-4BBF-B8F3-46BBD0E795CC"
+   type = "0"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8BC09D6C-E6FF-4251-89AD-ED85B9C67B41"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PruebaTecnicaPROMASS/Controller/FormViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "52"
+            endingLineNumber = "52"
+            landmarkName = "saveEntreda(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "AF8B909A-AE2E-4CA2-A1D6-47026A4158D9"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PruebaTecnicaPROMASS/ViewModel/BlogViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "17"
+            endingLineNumber = "17"
+            landmarkName = "AddEntrada(blog:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "BABA328C-9A75-4CA2-8F1E-CC4A3FD1BE47"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PruebaTecnicaPROMASS/ViewModel/BlogViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "50"
+            endingLineNumber = "50"
+            landmarkName = "tituloSearch(titulo:bblog:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "BABA328C-9A75-4CA2-8F1E-CC4A3FD1BE47 - 374eef482d106b5e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PruebaTecnicaPROMASS.BlogViewModel.tituloSearch(titulo: Swift.String, bblog: (Swift.Optional&lt;Swift.Array&lt;PruebaTecnicaPROMASS.Blog&gt;&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "PruebaTecnicaPROMASS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/macbookmba9/Documents/Ana%20Karen%20Guzman%20Rodriguez/PruebaTecnicaPROMASS/PruebaTecnicaPROMASS/ViewModel/BlogViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "50"
+                  endingLineNumber = "50"
+                  offsetFromSymbolStart = "92">
+               </Location>
+               <Location
+                  uuid = "BABA328C-9A75-4CA2-8F1E-CC4A3FD1BE47 - 2181e7a58b26b051"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;__C.FIRQuerySnapshot&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in PruebaTecnicaPROMASS.BlogViewModel.tituloSearch(titulo: Swift.String, bblog: (Swift.Optional&lt;Swift.Array&lt;PruebaTecnicaPROMASS.Blog&gt;&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "PruebaTecnicaPROMASS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/macbookmba9/Documents/Ana%20Karen%20Guzman%20Rodriguez/PruebaTecnicaPROMASS/PruebaTecnicaPROMASS/ViewModel/BlogViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "52"
+                  endingLineNumber = "52"
+                  offsetFromSymbolStart = "356">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B7544662-C860-41F6-9A86-72C69E0453CC"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PruebaTecnicaPROMASS/Controller/ListViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "90"
+            endingLineNumber = "90"
+            landmarkName = "btnSearch(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

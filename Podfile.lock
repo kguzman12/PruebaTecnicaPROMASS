@@ -1,0 +1,20 @@
+PODS:
+  - iOSDropDown (0.4.0)
+  - IQKeyboardManager (6.5.10)
+
+DEPENDENCIES:
+  - iOSDropDown
+  - IQKeyboardManager
+
+SPEC REPOS:
+  trunk:
+    - iOSDropDown
+    - IQKeyboardManager
+
+SPEC CHECKSUMS:
+  iOSDropDown: ce9daa584eaa5567cafc1b633e3cc7eb6d9cea42
+  IQKeyboardManager: 45a1fa55c1a5b02c61ac0fd7fd5b62bb4ad20d97
+
+PODFILE CHECKSUM: cb243166e7f98713d3e8b64d4e3487ed24f1d205
+
+COCOAPODS: 1.11.3
