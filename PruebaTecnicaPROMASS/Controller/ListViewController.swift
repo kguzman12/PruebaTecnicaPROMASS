@@ -20,8 +20,8 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     var idBlog: String = ""
     var searchTitulo: String = ""
-    var dropId: [Int] = [0, 1, 2, 3]
-    var dropListArray: [String] = ["", "Titulo", "Autor", "Contenido"]
+    var dropId: [Int] = [1, 2, 3]
+    var dropListArray: [String] = ["Titulo", "Autor", "Contenido"]
     var idBusqueda: Int = 0
     
     override func viewDidLoad() {
@@ -73,7 +73,7 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
                 }
             }
             
-            if let error = error {
+            if let _ = error {
                 let alert = UIAlertController(title: "Alert", message: "Error al consultar las publicaciones", preferredStyle: .alert)
                 
                 let aceptar = UIAlertAction(title: "Aceptar", style: .default)
@@ -85,70 +85,20 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     @IBAction func btnSearch(_ sender: UIButton) {
-        searchTitulo = txtSearch.text!
-        
-        if idBusqueda == 0 {
-            loadData()
-        } else if idBusqueda == 1 {
-            blogViewModel.tituloSearch(titulo: searchTitulo, bblog: { request, error in
-                if let requestData = request {
-                    DispatchQueue.main.async {
-                        self.blogModel = requestData
-                        print("titulo", self.blogModel?[0].idBlog)
-                        
-                        self.tableView.reloadData()
-                    }
-                }
-                
-                if let error = error {
-                    let alert = UIAlertController(title: "Alert", message: "Error al ejecutar la busqueda", preferredStyle: .alert)
-                    
-                    let aceptar = UIAlertAction(title: "Aceptar", style: .default)
-                    
-                    alert.addAction(aceptar)
-                    self.present(alert, animated: false)
-                }
-            })
+        let search = txtSearch.text!.lowercased().folding(options: .diacriticInsensitive, locale: .current)
+        guard search != "" else{
+                    loadData()
+                    return
+        }
+        if idBusqueda == 1 {
+                    self.blogModel = blogViewModel.tituloSearch(titulo: search)
         } else if idBusqueda == 2 {
-            blogViewModel.autorSearch(autor: searchTitulo, bblog: { request, error in
-                if let requestData = request {
-                    DispatchQueue.main.async {
-                        self.blogModel = requestData
-                        print("autor", self.blogModel)
-                        
-                        self.tableView.reloadData()
-                    }
-                }
-                
-                if let error = error {
-                    let alert = UIAlertController(title: "Alert", message: "Error al ejecutar la busqueda", preferredStyle: .alert)
-                    
-                    let aceptar = UIAlertAction(title: "Aceptar", style: .default)
-                    
-                    alert.addAction(aceptar)
-                    self.present(alert, animated: false)
-                }
-            })
+                    self.blogModel = blogViewModel.autorSearch(autor: search)
         } else {
-            blogViewModel.contenidoSearch(contenido: searchTitulo, bblog: { request, error in
-                if let requestData = request {
-                    DispatchQueue.main.async {
-                        self.blogModel = requestData
-                        print("contenido", self.blogModel)
-                        
-                        self.tableView.reloadData()
-                    }
-                }
-                
-                if let error = error {
-                    let alert = UIAlertController(title: "Alert", message: "Error al ejecutar la busqueda", preferredStyle: .alert)
-                    
-                    let aceptar = UIAlertAction(title: "Aceptar", style: .default)
-                    
-                    alert.addAction(aceptar)
-                    self.present(alert, animated: false)
-                }
-            })
+                    self.blogModel = blogViewModel.contenidoSearch(contenido: search)
+        }
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
         }
     }
     
@@ -163,6 +113,7 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ListCell", for: indexPath) as! ListTableViewCell
         
+        cell.delegate = self
         idBlog = blogModel?[indexPath.row].idBlog ?? ""
         
         var contenido = blogModel?[indexPath.row].contenido
@@ -175,17 +126,10 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
         cell.lblTitulo.text = blogModel?[indexPath.row].titulo
         cell.lblAutor.text = blogModel?[indexPath.row].autor
         cell.lblContenido.text = contenido
-        
-        let dateformatter = DateFormatter()
-        dateformatter.dateFormat = "dd-MM-yyyy'T'HH:ss"
-        let string = blogModel?[indexPath.row].fechaPublicacion
-        dateformatter.dateStyle = .full
-        let date = dateformatter.date(from: string as! String)
-        //print("47", date)
         cell.lblFechaPub.text = blogModel?[indexPath.row].fechaPublicacion
         
         if self.blogModel?[indexPath.row].imagen == "" {
-            cell.imgBlog.image = UIImage(named: "")
+            cell.imgBlog.image = UIImage(named: "SinFoto")
         } else {
             let imageData = Data(base64Encoded: (self.blogModel?[indexPath.row].imagen)!, options: Data.Base64DecodingOptions.ignoreUnknownCharacters)
             cell.imgBlog.image = UIImage(data: imageData!)
@@ -202,30 +146,34 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
 
 extension ListViewController: SwipeTableViewCellDelegate{
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeCellKit.SwipeActionsOrientation) -> [SwipeCellKit.SwipeAction]? {
-        if orientation == .right{
-            let deleteAction = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
-                let idalumno = self.resultModel?.Objects?[indexPath.row].IdAlumno
-                let result = self.alumnoViewModel.DeleteAlumno(idalumno ?? 0)
+        
+        guard orientation == .right else { return nil }
+        let deleteAction = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
             
-                if idalumno != 0 {
-                    let alert = UIAlertController(title: "Confirmación", message: "Publicación correctamente", preferredStyle: .alert)
+            let idBlog = self.blogModel?[indexPath.row].idBlog
+            self.blogViewModel.DeleteBlog(idBlog: idBlog!) { result in
+                if result == true {
+                    let alert = UIAlertController(title: "Confirmación", message: "Publicación eliminada correctamente", preferredStyle: .alert)
                     let aceptar = UIAlertAction(title: "Aceptar", style: .default)
-                    
+                 
                     alert.addAction(aceptar)
                     self.present(alert, animated: false)
-                } else {
-                    let alert = UIAlertController(title: "Mensaje", message: "Se produjo un error al eliminar el alumno", preferredStyle: .alert)
+                }else {
+                    let alert = UIAlertController(title: "Mensaje", message: "Se produjo un error al eliminar la publicación", preferredStyle: .alert)
                     let aceptar = UIAlertAction(title: "Aceptar", style: .default)
-                    
+                 
                     alert.addAction(aceptar)
                     self.present(alert, animated: false)
                 }
-                self.tableView.reloadData()
             }
-          
-            deleteAction.image = UIImage(named: "delete")
-            return [deleteAction]
+            
+            DispatchQueue.main.async {
+                self.loadData()
+            }
         }
+        
+        deleteAction.image = UIImage(named: "delete")
+        return [deleteAction]
     }
 }
 

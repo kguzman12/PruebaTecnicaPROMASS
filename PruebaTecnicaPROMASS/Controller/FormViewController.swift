@@ -75,7 +75,6 @@ class FormViewController: UIViewController, UIImagePickerControllerDelegate, UIN
             alert.addAction(aceptar)
             self.present(alert, animated: false)
         } else {
-            //print(titulo, autor, contenido)
             let date = Date()
             let dataFormatter = DateFormatter()
             dataFormatter.dateFormat = "dd-MM-yyyy, HH:mm:ss"
@@ -84,7 +83,7 @@ class FormViewController: UIViewController, UIImagePickerControllerDelegate, UIN
             print(dataFormatter.string(from: date))
             
             bloModel = Blog(titulo: titulo, autor: autor, fechaPublicacion: newDate, contenido: contenido, imagen: imageString)
-            //print(bloModel)
+            
             let result = blogViewModel.AddEntrada(blog: bloModel!)
             
             if result != nil {
