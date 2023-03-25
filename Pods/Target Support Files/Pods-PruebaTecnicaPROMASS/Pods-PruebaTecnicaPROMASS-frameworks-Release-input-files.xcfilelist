@@ -1,3 +1,4 @@
 ${PODS_ROOT}/Target Support Files/Pods-PruebaTecnicaPROMASS/Pods-PruebaTecnicaPROMASS-frameworks.sh
 ${BUILT_PRODUCTS_DIR}/IQKeyboardManager/IQKeyboardManager.framework
+${BUILT_PRODUCTS_DIR}/SwipeCellKit/SwipeCellKit.framework
 ${BUILT_PRODUCTS_DIR}/iOSDropDown/iOSDropDown.framework

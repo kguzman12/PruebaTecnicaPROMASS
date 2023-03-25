@@ -6,6 +6,7 @@ target 'PruebaTecnicaPROMASS' do
   use_frameworks!
   pod 'IQKeyboardManager'
   pod 'iOSDropDown'
+  pod 'SwipeCellKit'
 
   # Pods for PruebaTecnicaPROMASS
 

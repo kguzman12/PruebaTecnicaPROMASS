@@ -12,6 +12,7 @@ class ListTableViewCell: UITableViewCell {
     @IBOutlet weak var lblAutor: UILabel!
     @IBOutlet weak var lblContenido: UILabel!
     @IBOutlet weak var lblFechaPub: UILabel!
+    @IBOutlet weak var imgBlog: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()

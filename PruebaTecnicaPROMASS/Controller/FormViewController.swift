@@ -6,14 +6,17 @@
 //
 
 import UIKit
+import FirebaseStorage
 
-class FormViewController: UIViewController, UIImagePickerControllerDelegate & UINavigationControllerDelegate {
+class FormViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     @IBOutlet weak var imgBlog: UIImageView!
     @IBOutlet weak var btnCargaImg: UIButton!
     @IBOutlet weak var txtTitulo: UITextField!
     @IBOutlet weak var txtAutor: UITextField!
     @IBOutlet weak var txtContenido: UITextView!
     @IBOutlet weak var btnSave: UIButton!
+    
+    let storege = Storage.storage()
     
     var blogViewModel = BlogViewModel()
     var bloModel: Blog? = nil
@@ -33,6 +36,15 @@ class FormViewController: UIViewController, UIImagePickerControllerDelegate & UI
     @IBAction func loadImge() {
         self.present(imagePicker, animated: true)
     }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        if let image = info[.originalImage] as? UIImage{
+            imgBlog.image = image
+        }
+        dismiss(animated: true, completion: nil)
+    }
+
     
     @IBAction func saveEntreda(_ sender: UIButton) {
         //print("funciona")
@@ -54,11 +66,6 @@ class FormViewController: UIViewController, UIImagePickerControllerDelegate & UI
         let imageData = image.pngData()! as NSData
         imageString = imageData.base64EncodedString(options: .lineLength64Characters)
         print(imageString)
-        
-        func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-            imgBlog.image = info[.originalImage] as? UIImage
-            
-        }
         
         if titulo == "" && autor == "" && contenido == "" {
             let alert = UIAlertController(title: "Mensaje", message: "No se pueden registrar datos vacios", preferredStyle: .alert)
@@ -87,12 +94,13 @@ class FormViewController: UIViewController, UIImagePickerControllerDelegate & UI
                     self.txtTitulo.text = ""
                     self.txtAutor.text = ""
                     self.txtContenido.text = ""
+                    
+                    self.dismiss(animated: true,completion: nil)
                 })
                 
                 alert.addAction(aceptar)
                 self.present(alert, animated: false)
-                
-                dismiss(animated: true,completion: nil)
+               
             } else {
                 let alert = UIAlertController(title: "Mensaje", message: "Error al intentar registrar una nota", preferredStyle: .alert)
                 let aceptar = UIAlertAction(title: "Aceptar", style: .default)

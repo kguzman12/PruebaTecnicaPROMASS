@@ -50,16 +50,21 @@ class BlogViewModel{
                 let autor = document.data()["autor"] as! String
                 let contenido = document.data()["contenido"] as! String
                 
-                let timestamp = document.data()["fechaPublicacion"] as? TimeInterval ?? 0
-                //print(timestamp)
-                let date = Date(timeIntervalSince1970: timestamp)
-                let dateformatter = DateFormatter()
-                dateformatter.dateFormat = "dd-MM-yyyy HH:ss"
-                dateformatter.dateStyle = .full
-                let strDate = dateformatter.string(from: date)
-                //print("47", strDate)
+                var imagen = ""
+                if document.data()["imagen"] == nil {
+                    imagen = ""
+                } else {
+                    imagen = document.data()["imagen"] as! String
+                }
                 
-                let blog = Blog(idBlog: idBlog, titulo: titulo, autor: autor, fechaPublicacion: strDate, contenido: contenido, imagen: "")
+                let dateformatter = DateFormatter()
+                dateformatter.dateFormat = "dd-MM-yyyy'T'HH:ss"
+                let string = document.data()["fechaPublicacion"]
+                dateformatter.dateStyle = .full
+                let date = dateformatter.date(from: string as! String)
+                print("47", date)
+                
+                let blog = Blog(idBlog: idBlog, titulo: titulo, autor: autor, fechaPublicacion: string as! String, contenido: contenido, imagen: imagen)
                 blogs.append(blog)
         
             }
@@ -162,8 +167,13 @@ class BlogViewModel{
             let titulo = document?.data()?["titulo"] as! String
             let autor = document?.data()?["autor"] as! String
             let contenido = document?.data()?["contenido"] as! String
-                //let fecha = document.data()["fechaPublicacion"] as! Date
-            let blog = Blog(idBlog: idBlog, titulo: titulo, autor: autor, fechaPublicacion: "", contenido: contenido, imagen: "")
+            var imagen = ""
+            if document?.data()?["imagen"] == nil {
+                imagen = ""
+            } else {
+                imagen = document?.data()?["imagen"] as! String
+            }
+            let blog = Blog(idBlog: idBlog, titulo: titulo, autor: autor, fechaPublicacion: "", contenido: contenido, imagen: imagen)
             blogs.append(blog)
             
             bblog(blogs, nil)
