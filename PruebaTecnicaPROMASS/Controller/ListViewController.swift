@@ -19,8 +19,8 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     var idBlog: String = ""
     var searchTitulo: String = ""
-    var dropId: [Int] = [0,1, 2]
-    var dropListArray: [String] = ["", "Titulo", "Autor o contenido"]
+    var dropId: [Int] = [0, 1, 2, 3]
+    var dropListArray: [String] = ["", "Titulo", "Autor", "Contenido"]
     var idBusqueda: Int = 0
     
     override func viewDidLoad() {
@@ -42,12 +42,10 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func loadDrop(){
         for name in dropListArray {
-            print(name)
             dropDronSearc.optionArray.append(name)
         }
         
         for id in dropId {
-            print(id)
             dropDronSearc.optionIds?.append(id)
         }
        
@@ -69,14 +67,13 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
             if let requestData = request {
                 DispatchQueue.main.async {
                     self.blogModel = requestData
-                    print("controlador", self.blogModel)
-                    
+                    //print(self.blogModel)
                     self.tableView.reloadData()
                 }
             }
             
             if let error = error {
-                let alert = UIAlertController(title: "Alert", message: "Error al consultar las publicaciones" + error.localizedDescription, preferredStyle: .alert)
+                let alert = UIAlertController(title: "Alert", message: "Error al consultar las publicaciones", preferredStyle: .alert)
                 
                 let aceptar = UIAlertAction(title: "Aceptar", style: .default)
                 
@@ -89,19 +86,21 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBAction func btnSearch(_ sender: UIButton) {
         searchTitulo = txtSearch.text!
         
-        if idBusqueda == 1{
+        if idBusqueda == 0 {
+            loadData()
+        } else if idBusqueda == 1 {
             blogViewModel.tituloSearch(titulo: searchTitulo, bblog: { request, error in
                 if let requestData = request {
                     DispatchQueue.main.async {
                         self.blogModel = requestData
-                        print("busqueda", self.blogModel)
+                        print("titulo", self.blogModel?[0].idBlog)
                         
                         self.tableView.reloadData()
                     }
                 }
                 
                 if let error = error {
-                    let alert = UIAlertController(title: "Alert", message: "Error al ejecutar la busqueda" + error.localizedDescription, preferredStyle: .alert)
+                    let alert = UIAlertController(title: "Alert", message: "Error al ejecutar la busqueda", preferredStyle: .alert)
                     
                     let aceptar = UIAlertAction(title: "Aceptar", style: .default)
                     
@@ -109,11 +108,46 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
                     self.present(alert, animated: false)
                 }
             })
-        } else if idBusqueda == 2{
-            print(idBusqueda,"Autor o contenido")
+        } else if idBusqueda == 2 {
+            blogViewModel.autorSearch(autor: searchTitulo, bblog: { request, error in
+                if let requestData = request {
+                    DispatchQueue.main.async {
+                        self.blogModel = requestData
+                        print("autor", self.blogModel)
+                        
+                        self.tableView.reloadData()
+                    }
+                }
+                
+                if let error = error {
+                    let alert = UIAlertController(title: "Alert", message: "Error al ejecutar la busqueda", preferredStyle: .alert)
+                    
+                    let aceptar = UIAlertAction(title: "Aceptar", style: .default)
+                    
+                    alert.addAction(aceptar)
+                    self.present(alert, animated: false)
+                }
+            })
         } else {
-            print(idBusqueda)
-            loadData()
+            blogViewModel.contenidoSearch(contenido: searchTitulo, bblog: { request, error in
+                if let requestData = request {
+                    DispatchQueue.main.async {
+                        self.blogModel = requestData
+                        print("contenido", self.blogModel)
+                        
+                        self.tableView.reloadData()
+                    }
+                }
+                
+                if let error = error {
+                    let alert = UIAlertController(title: "Alert", message: "Error al ejecutar la busqueda", preferredStyle: .alert)
+                    
+                    let aceptar = UIAlertAction(title: "Aceptar", style: .default)
+                    
+                    alert.addAction(aceptar)
+                    self.present(alert, animated: false)
+                }
+            })
         }
     }
     
@@ -128,10 +162,16 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ListCell", for: indexPath) as! ListTableViewCell
         
+        idBlog = blogModel?[indexPath.row].idBlog ?? ""
+        let contenido = blogModel?[indexPath.row].contenido
+        let index = (contenido?.index(contenido!.startIndex, offsetBy: 70))!
+        let newContenido = contenido![..<index]
+        print("newContenido", newContenido)
+        
         cell.lblTitulo.text = blogModel?[indexPath.row].titulo
         cell.lblAutor.text = blogModel?[indexPath.row].autor
         cell.lblContenido.text = blogModel?[indexPath.row].contenido
-        cell.lblFechaPub.text = "23/03/2023" //blogModel?.fechaPublicacion
+        cell.lblFechaPub.text = blogModel?[indexPath.row].fechaPublicacion
         
         return cell
     }
@@ -140,6 +180,7 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.idBlog = blogModel?[indexPath.row].idBlog ?? ""
         performSegue(withIdentifier: "detalle", sender: self)
     }
+
 
 }
 
