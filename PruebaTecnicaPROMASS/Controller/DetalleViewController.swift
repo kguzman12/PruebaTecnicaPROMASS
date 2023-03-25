@@ -37,6 +37,9 @@ class DetalleViewController: UIViewController {
                     self.lblTitulo.text = self.blogModel?[0].titulo
                     self.lblAutor.text = self.blogModel?[0].autor
                     self.lblContenido.text = self.blogModel?[0].contenido
+                    
+                    let imageData = Data(base64Encoded: (self.blogModel?[0].imagen)!, options: Data.Base64DecodingOptions.ignoreUnknownCharacters)
+                    self.imgDetalle.image = UIImage(data: imageData!)
                 }
             }
             

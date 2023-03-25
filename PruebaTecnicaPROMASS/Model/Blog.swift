@@ -13,6 +13,7 @@ struct Blog: Codable{
     var autor: String = ""
     var fechaPublicacion: String = ""
     var contenido: String = ""
+    var imagen: String = ""
     
     enum CodingKeys: String, CodingKey {
         case idBlog
@@ -20,14 +21,16 @@ struct Blog: Codable{
         case autor
         case fechaPublicacion
         case contenido
+        case imagen
     }
     
-    init(idBlog: String? = nil, titulo: String, autor: String, fechaPublicacion: String, contenido: String) {
+    init(idBlog: String? = nil, titulo: String, autor: String, fechaPublicacion: String, contenido: String, imagen: String) {
         self.idBlog = idBlog
         self.titulo = titulo
         self.autor = autor
         self.fechaPublicacion = fechaPublicacion
         self.contenido = contenido
+        self.imagen = imagen
     }
     
     init() {
@@ -36,6 +39,7 @@ struct Blog: Codable{
         self.autor = ""
         self.fechaPublicacion = ""
         self.contenido = ""
+        self.imagen = ""
     }
     
     

@@ -55,10 +55,11 @@ class BlogViewModel{
                 let date = Date(timeIntervalSince1970: timestamp)
                 let dateformatter = DateFormatter()
                 dateformatter.dateFormat = "dd-MM-yyyy HH:ss"
+                dateformatter.dateStyle = .full
                 let strDate = dateformatter.string(from: date)
                 //print("47", strDate)
                 
-                let blog = Blog(idBlog: idBlog, titulo: titulo, autor: autor, fechaPublicacion: strDate, contenido: contenido)
+                let blog = Blog(idBlog: idBlog, titulo: titulo, autor: autor, fechaPublicacion: strDate, contenido: contenido, imagen: "")
                 blogs.append(blog)
         
             }
@@ -92,7 +93,7 @@ class BlogViewModel{
                 let autor = document.data()["autor"] as! String
                 let contenido = document.data()["contenido"] as! String
                 //let fecha = document.data()["fechaPublicacion"] as! Date
-                let blog = Blog(idBlog: idBlog, titulo: titulo, autor: autor, fechaPublicacion: "", contenido: contenido)
+                let blog = Blog(idBlog: idBlog, titulo: titulo, autor: autor, fechaPublicacion: "", contenido: contenido, imagen: "")
                 blogs.append(blog)
             }
             bblog(blogs, nil)
@@ -116,7 +117,7 @@ class BlogViewModel{
                 let autor = document.data()["autor"] as! String
                 let contenido = document.data()["contenido"] as! String
                 //let fecha = document.data()["fechaPublicacion"] as! Date
-                let blog = Blog(idBlog: idBlog, titulo: titulo, autor: autor, fechaPublicacion: "", contenido: contenido)
+                let blog = Blog(idBlog: idBlog, titulo: titulo, autor: autor, fechaPublicacion: "", contenido: contenido, imagen: "")
                 blogs.append(blog)
             }
             bblog(blogs, nil)
@@ -140,7 +141,7 @@ class BlogViewModel{
                 let autor = document.data()["autor"] as! String
                 let contenido = document.data()["contenido"] as! String
                 //let fecha = document.data()["fechaPublicacion"] as! Date
-                let blog = Blog(idBlog: idBlog, titulo: titulo, autor: autor, fechaPublicacion: "", contenido: contenido)
+                let blog = Blog(idBlog: idBlog, titulo: titulo, autor: autor, fechaPublicacion: "", contenido: contenido, imagen: "")
                 blogs.append(blog)
             }
             bblog(blogs, nil)
@@ -162,7 +163,7 @@ class BlogViewModel{
             let autor = document?.data()?["autor"] as! String
             let contenido = document?.data()?["contenido"] as! String
                 //let fecha = document.data()["fechaPublicacion"] as! Date
-            let blog = Blog(idBlog: idBlog, titulo: titulo, autor: autor, fechaPublicacion: "", contenido: contenido)
+            let blog = Blog(idBlog: idBlog, titulo: titulo, autor: autor, fechaPublicacion: "", contenido: contenido, imagen: "")
             blogs.append(blog)
             
             bblog(blogs, nil)
